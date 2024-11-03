@@ -14,16 +14,25 @@ export fn _start() linksection(".text._start") callconv(.Naked) void {
 }
 
 export fn main() noreturn {
+    const evm_bytecode = [_]u8{0};
+    // simplistic evm
+    for (evm_bytecode) |opcode| {
+        switch (opcode) {
+            0 => break,
+            else => @panic("invalid instruction"),
+        }
+    }
 
+    // call syscall_halt
+    const SYSCALL_HALT = 0;
+    const exitcode = 0;
+    asm volatile (
+        \\ecall
+        :
+        : [sycallnumber] "{t0}" (SYSCALL_HALT),
+          [exitcode] "{a0}" (exitcode),
+    );
 
-	const evm_bytecode = [_]u8{0};
-	// simplistic evm
-	for (evm_bytecode) |opcode| {
-		switch (opcode) {
-			0 => break,
-			else => @panic("invalid instruction"),
-		}
-	}
-	// TODO call syscall_halt
-	while (true) { }
+    // The ecall should not return
+    unreachable;
 }
