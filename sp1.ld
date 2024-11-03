@@ -1,9 +1,9 @@
 ENTRY(_start)
  
 SECTIONS {
-    . = 1M;
+    . = 0x200800;
  
-    .text : ALIGN(4K) {
+    .text : ALIGN(1K) {
         KEEP(*(.text._start))
         *(.text)
     }
