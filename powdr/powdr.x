@@ -9,7 +9,7 @@ SECTIONS
   . = 0x10000100;
   .data : {
     *(.data)
-    PROVIDE( __global_pointer$ = . + 0x800 );
+    PROVIDE( __global_pointer = . + 0x800 );
   }
   .bss : { *(.bss) }
 
