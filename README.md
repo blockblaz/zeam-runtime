@@ -1,4 +1,4 @@
-# zeam-sp1-poc
+# zeam-poc
 
 This is the PoC to demonstrate that it's possible to build a zig beam chain client.
 
@@ -20,7 +20,7 @@ From the powdr interface:
 
 ```
 > mkdir output
-> cargo run --bin powdr-rs riscv-elf ../zeam-sp1-poc/zig-out/bin/zig-beam-poc -o output
+> cargo run --bin powdr-rs riscv-elf ../zeam-poc/zig-out/bin/zeam-poc -o output
 ```
 
 The PIL asm file will be found in `output/main.asm`, which can be used in powdr.
