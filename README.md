@@ -1,7 +1,26 @@
 # zeam-sp1-poc
 
-This is wip and currently won't work in sp1, it needs to get some specific definitions that aren't public afaik.
+This is the PoC to demonstrate that it's possible to build a zig beam chain client.
 
-In order to build the zig lib, run `.build.sh`.
+Only powdr support has been worked so far, with other zkVM in progress.
 
-Note that this needs a linker script to actually dump any code, but it still validates the possibility to call zig code from rust, since using a different submachine would cause an error (remove `-mcpu sifive_e76` in `build.sh` to see for yourself).
+### powdr
+
+#### Build
+
+```
+> zig build
+```
+
+This will produce a file in `zig-out/bin`.
+
+#### Running
+
+From the powdr interface:
+
+```
+> mkdir output
+> cargo run --bin powdr-rs riscv-elf ../zeam-sp1-poc/zig-out/bin/zig-beam-poc -o output
+```
+
+The PIL asm file will be found in `output/main.asm`, which can be used in powdr.
