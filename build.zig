@@ -22,7 +22,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe.setLinkerScript(b.path("./powdr/powdr.x"));
+    exe.setLinkerScript(b.path("src/powdr/powdr.x"));
     exe.link_emit_relocs = true;
 
     // This declares intent for the executable to be installed into the
