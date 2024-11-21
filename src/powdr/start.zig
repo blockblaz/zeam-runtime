@@ -61,7 +61,7 @@ pub fn read_u32(idx: u32) u32 {
     return ret;
 }
 
-pub fn read_data_len(fd: u32) u32 {
+pub fn read_data_len(fd: u32) usize {
     var ret: u32 = undefined;
     asm volatile ("ecall"
         : [ret] "{a0}" (ret),
@@ -73,7 +73,7 @@ pub fn read_data_len(fd: u32) u32 {
     return ret;
 }
 
-pub fn read_slice(fd: u32, data: []const u32) void {
+pub fn read_slice(fd: u32, data: []u32) void {
     for (data, 0..) |*d, idx| {
         var item: u32 = undefined;
         asm volatile ("ecall"
