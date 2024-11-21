@@ -21,6 +21,7 @@ From the powdr interface:
 ```
 > mkdir output
 > cargo run --bin powdr-rs riscv-elf ../zeam-poc/zig-out/bin/zeam-poc -o output
+> cargo run -r --bin powdr-rs execute output/zeam-poc.asm
 ```
 
 The PIL asm file will be found in `output/main.asm`, which can be used in powdr.

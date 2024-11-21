@@ -2,7 +2,7 @@ const std = @import("std");
 const powdr = @import("./powdr/start.zig");
 
 export fn main() noreturn {
-    powdr.print_str("running dummy EVM contract");
+    powdr.print_str("running dummy EVM contract\n");
 
     const evm_bytecode = [_]u8{0};
     // simplistic evm
@@ -13,7 +13,7 @@ export fn main() noreturn {
         }
     }
 
-    powdr.print_str("run completed");
+    powdr.print_str("run completed\n");
 
     powdr.halt();
 }
