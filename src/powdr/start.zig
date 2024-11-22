@@ -21,11 +21,13 @@ export fn _start() callconv(.Naked) void {
     asm volatile (
         \\.option push
         \\.option norelax
+        // symbols are hardcoded, as passing them
+        // via the assembler constraints produce
+        // weird behaviors. To be tried again when
+        // the assembler interface stabilizes.
+        \\la gp, __global_pointer
+        \\la sp, __powdr_stack_start
         \\tail main
-        :
-        : [global_pointer] "{gp}" (__global_pointer),
-          [powdr_stack_start] "{sp}" (__powdr_stack_start),
-        : "memory"
     );
 }
 
