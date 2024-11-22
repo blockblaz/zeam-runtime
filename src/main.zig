@@ -17,3 +17,11 @@ export fn main() noreturn {
 
     powdr.halt();
 }
+
+pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
+    powdr.print_str("PANIC: ");
+    powdr.print_str(msg);
+    powdr.print_str("\n");
+    powdr.halt();
+    while (true) {}
+}
