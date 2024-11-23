@@ -1,6 +1,6 @@
-# zeam-poc
+# zeam-runtime
 
-This is the PoC to demonstrate that it's possible to build a zig beam chain client.
+This package is the runtime libraries required for zeam to run in zkVMs.
 
 Only powdr support has been worked so far, with other zkVM in progress.
 
@@ -21,7 +21,10 @@ From the powdr interface:
 ```
 > mkdir output
 > cargo run --bin powdr-rs riscv-elf ../zeam-poc/zig-out/bin/zeam-poc -o output
-> cargo run -r --bin powdr-rs execute output/zeam-poc.asm
 ```
 
-The PIL asm file will be found in `output/main.asm`, which can be used in powdr.
+The powdr asm file will be found in `output/main.asm`, which can be used:
+
+```
+> cargo run -r --bin powdr-rs execute output/zeam-poc.asm
+```
