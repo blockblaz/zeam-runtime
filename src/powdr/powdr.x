@@ -19,6 +19,5 @@ SECTIONS
   __powdr_stack_start = 0x10000000;
 }
 
-# Specify the entry point function provided by powdr-riscv-runtime:
 ASSERT(DEFINED(_start), "Error: _start is not defined.")
 ENTRY(_start)
