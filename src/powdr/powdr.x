@@ -9,8 +9,9 @@ SECTIONS
   . = 0x10000100;
   .data : {
     *(.data)
-    PROVIDE( __global_pointer = . + 0x800 );
   }
+  . = ALIGN(0x1000); # Page-align BSS section
+  PROVIDE(__global_pointer = .);
   .bss : { *(.bss) }
 
   # Text addresses are fake in powdr, we use a different address space.

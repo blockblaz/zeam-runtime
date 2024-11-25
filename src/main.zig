@@ -1,6 +1,8 @@
 const std = @import("std");
 const powdr = @import("./powdr/start.zig");
 
+var fixed_mem = [_]u8{0} ** 256;
+
 export fn main() noreturn {
     powdr.print_str("running dummy EVM contract\n");
 
@@ -14,6 +16,14 @@ export fn main() noreturn {
     }
 
     powdr.print_str("run completed\n");
+
+    var fixed_allocator = std.heap.FixedBufferAllocator.init(fixed_mem[0..]);
+    var allocator = fixed_allocator.allocator();
+
+    // Test the allocator by writing one word
+    var buf = allocator.alloc(u8, 32) catch @panic("error allocating fixed buffer");
+    defer allocator.free(buf);
+    buf[0] = 1;
 
     powdr.halt();
 }
