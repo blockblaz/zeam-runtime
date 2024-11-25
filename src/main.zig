@@ -1,7 +1,7 @@
 const std = @import("std");
 const powdr = @import("./powdr/start.zig");
 
-var fixed_mem = [_]u8{0} ** 256;
+var fixed_mem = [_]u8{0} ** (256 * 1024 * 1024);
 
 export fn main() noreturn {
     powdr.print_str("running dummy EVM contract\n");
