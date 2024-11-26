@@ -1,3 +1,4 @@
+const std = @import("std");
 
 const syscalls = enum {
     reserved_0,
@@ -27,6 +28,18 @@ export fn _start() callconv(.Naked) void {
         \\la sp, __powdr_stack_start
         \\tail main
     );
+}
+
+pub fn native_hash(data: *[12]u64) [4]u64 {
+    asm volatile ("ecall"
+        :
+        : [scallnum] "{t0}" (@intFromEnum(syscalls.output)),
+          [subcommand] "{a0}" (data),
+        : "memory"
+    );
+    var ret: [4]u64 = undefined;
+    std.mem.copyForwards(u64, ret[0..], data.*[0..4]);
+    return ret;
 }
 
 pub fn halt() noreturn {
