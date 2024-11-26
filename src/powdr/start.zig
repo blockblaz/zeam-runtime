@@ -1,5 +1,3 @@
-extern const __global_pointer: u32;
-extern const __powdr_stack_start: u32;
 
 const syscalls = enum {
     reserved_0,
