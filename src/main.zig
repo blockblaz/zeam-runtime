@@ -25,7 +25,19 @@ export fn main() noreturn {
     defer allocator.free(buf);
     buf[0] = 1;
 
-    powdr.halt();
+    // Test reading inputs
+    const proposed_sum = zkvm.io.read_u32(0);
+    const len: usize = @intCast(zkvm.io.read_u32(1));
+    var computed_sum: u32 = 0;
+    for (0..len) |i| {
+        computed_sum += zkvm.io.read_u32(2 + i);
+    }
+    if (computed_sum != proposed_sum) {
+        const panicStr = std.fmt.allocPrint(allocator, "sums don't match: {} != {}", .{ computed_sum, proposed_sum }) catch @panic("could not allocate print memory");
+        @panic(panicStr);
+    }
+
+    zkvm.halt();
 }
 
 pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
