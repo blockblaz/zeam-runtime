@@ -1,20 +1,5 @@
 const std = @import("std");
-
-const syscalls = enum {
-    reserved_0,
-    input,
-    output,
-    poseidon_gl,
-    affine_256,
-    ec_add,
-    ec_double,
-    keccakf,
-    mod_256,
-    halt,
-    poseidon2_gl,
-    native_hash,
-    commit_public,
-};
+const syscalls = @import("./syscalls.zig").syscalls;
 
 pub fn native_hash(data: *[12]u64) [4]u64 {
     asm volatile ("ecall"
