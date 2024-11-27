@@ -25,7 +25,10 @@ export fn main() noreturn {
     defer allocator.free(buf);
     buf[0] = 1;
 
-    // Test reading inputs
+    // Test reading inputs by checking a sum - uncomment this code if you want to test it.
+    // It's the same as the `sum` test in the powdr runtime: it expects a final sum, a number
+    // N, and then another N integers, and it checks that the proposed sum equals to the
+    // sum of all other N integers.
     const proposed_sum = zkvm.io.read_u32(0);
     const len: usize = @intCast(zkvm.io.read_u32(1));
     var computed_sum: u32 = 0;
@@ -35,6 +38,21 @@ export fn main() noreturn {
     if (computed_sum != proposed_sum) {
         const panicStr = std.fmt.allocPrint(allocator, "sums don't match: {} != {}", .{ computed_sum, proposed_sum }) catch @panic("could not allocate print memory");
         @panic(panicStr);
+    }
+
+    // Test the sra instruction - uncomment this code if you want to test it.
+    const res = asm volatile (
+        \\li t0, -42
+        \\sra %[ret], t0, %[shift]
+        : [ret] "=r" (-> i32),
+        : [shift] "r" (2),
+        : "{t0}"
+    );
+
+    const resultstr = std.fmt.allocPrint(allocator, "result: {}\n", .{res}) catch @panic("could not allocate print memory");
+    zkvm.io.print_str(resultstr);
+    if (res != -11) {
+        @panic("sra didn't work");
     }
 
     zkvm.halt();
