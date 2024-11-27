@@ -18,6 +18,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+    exe.addAssemblyFile(b.path("src/powdr/start.s"));
 
     exe.setLinkerScript(b.path("src/powdr/powdr.x"));
     exe.pie = true;
