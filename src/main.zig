@@ -1,5 +1,5 @@
 const std = @import("std");
-const powdr = @import("./powdr/start.zig");
+const powdr = @import("zkvm");
 
 var fixed_mem = [_]u8{0} ** (256 * 1024 * 1024);
 
