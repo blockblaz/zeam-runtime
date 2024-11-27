@@ -1,8 +1,6 @@
 const std = @import("std");
 const syscalls = @import("./syscalls.zig").syscalls;
-const output = @import("./output.zig");
-
-pub const print_str = output.print_str;
+pub const io = @import("./io.zig");
 
 pub fn native_hash(data: *[12]u64) [4]u64 {
     asm volatile ("ecall"
