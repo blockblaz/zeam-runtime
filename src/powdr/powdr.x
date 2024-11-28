@@ -11,7 +11,7 @@ SECTIONS
     *(.data)
   }
   . = ALIGN(0x1000); # Page-align BSS section
-  PROVIDE(__global_pointer = .);
+  PROVIDE(__global_pointer$ = .);
   .bss : { *(.bss) }
 
   # Text addresses are fake in powdr, we use a different address space.
