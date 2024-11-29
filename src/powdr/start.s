@@ -3,8 +3,8 @@
 
 _start:
     .option push
-    .option relax
-
-    la gp, __global_pointer$
-    la sp, __powdr_stack_start
+    .option norelax
+    lla gp, __global_pointer$
+    lla sp, __powdr_stack_start
+    .option pop
     tail main
