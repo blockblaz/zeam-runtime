@@ -5,7 +5,7 @@ pub const io = @import("./io.zig");
 pub fn native_hash(data: *[12]u64) [4]u64 {
     asm volatile ("ecall"
         :
-        : [scallnum] "{t0}" (@intFromEnum(syscalls.output)),
+        : [scallnum] "{t0}" (@intFromEnum(syscalls.native_hash)),
           [subcommand] "{a0}" (data),
         : "memory"
     );
