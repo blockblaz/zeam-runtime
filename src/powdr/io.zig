@@ -5,7 +5,7 @@ pub fn print_str(str: []const u8) void {
         asm volatile ("ecall"
             :
             : [scallnum] "{t0}" (@intFromEnum(syscalls.output)),
-              [subcommand] "{a0}" (1), // fd = 1 == stdout
+              [subcommand] "{a0}" (0),
               [arg1] "{a1}" (c),
             : "memory"
         );
