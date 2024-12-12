@@ -5,6 +5,6 @@ _start:
     .option push
     .option norelax
     lla gp, __global_pointer$
-    lla sp, __powdr_stack_start
     .option pop
-    tail main
+    lla sp, __powdr_stack_start
+    call main
