@@ -12,4 +12,5 @@ pub const syscalls = enum {
     poseidon2_gl,
     native_hash,
     commit_public,
+    invert_gl,
 };
