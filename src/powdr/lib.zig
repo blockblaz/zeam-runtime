@@ -50,6 +50,7 @@ const committed_publics = struct {
             for (self.state[self.buffer_size + 4 .. 8]) |*n| {
                 n.* = 0;
             }
+            self.update_state();
         }
 
         var h: [4]u64 = undefined;
