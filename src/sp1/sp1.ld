@@ -1,6 +1,8 @@
 ENTRY(_start)
  
 SECTIONS {
+    STACK_TOP = 0x00200400;
+
     . = 0x200800;
  
     .text : ALIGN(1K) {
