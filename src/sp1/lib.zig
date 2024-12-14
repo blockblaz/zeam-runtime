@@ -1,4 +1,5 @@
 pub const io = @import("./io.zig");
+pub const syscalls = @import("./syscalls.zig");
 extern fn main() noreturn;
 
 export fn __start() noreturn {
