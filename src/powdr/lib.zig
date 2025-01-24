@@ -84,7 +84,7 @@ fn finalize() void {
     }
 }
 
-pub fn halt() noreturn {
+pub fn halt(_: u32) noreturn {
     finalize();
     asm volatile ("ecall"
         :

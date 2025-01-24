@@ -15,7 +15,7 @@ export fn __start() noreturn {
     main();
 }
 
-pub fn halt() noreturn {
+pub fn halt(_: u32) noreturn {
     const exit_code = 0; // make it an interface param if that makes sense
 
     asm volatile ("ecall"

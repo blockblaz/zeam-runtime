@@ -1,6 +1,7 @@
 const std = @import("std");
 
 const zkvm_types = enum {
+    ceno,
     powdr,
     sp1,
 };
@@ -17,6 +18,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .target = target,
         .root_source_file = b.path(switch (zkvm) {
+            .ceno => "src/ceno/lib.zig",
             .powdr => "src/powdr/lib.zig",
             .sp1 => "src/sp1/lib.zig",
         }),
@@ -31,6 +33,10 @@ pub fn build(b: *std.Build) void {
     exe.root_module.addImport("zkvm", zkvm_module);
 
     switch (zkvm) {
+        .ceno => {
+            exe.addAssemblyFile(b.path("src/ceno/start.s"));
+            exe.setLinkerScript(b.path("src/ceno/ceno.ld"));
+        },
         .powdr => {
             exe.addAssemblyFile(b.path("src/powdr/start.s"));
             exe.setLinkerScript(b.path("src/powdr/powdr.x"));

@@ -55,13 +55,13 @@ export fn main() noreturn {
     //     @panic("sra didn't work");
     // }
 
-    zkvm.halt();
+    zkvm.halt(0);
 }
 
 pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
     zkvm.io.print_str("PANIC: ");
     zkvm.io.print_str(msg);
     zkvm.io.print_str("\n");
-    zkvm.halt();
+    zkvm.halt(1);
     while (true) {}
 }
