@@ -40,13 +40,13 @@ pub fn build(b: *std.Build) void {
         .powdr => {
             exe.addAssemblyFile(b.path("src/powdr/start.s"));
             exe.setLinkerScript(b.path("src/powdr/powdr.x"));
+            exe.pie = true;
         },
         .sp1 => {
             exe.addAssemblyFile(b.path("src/sp1/start.s"));
             exe.setLinkerScript(b.path("src/sp1/sp1.ld"));
         },
     }
-    exe.pie = true;
 
     b.installArtifact(exe);
 }
