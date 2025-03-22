@@ -1,5 +1,7 @@
 # zeam-runtime
 
+**The content of this repository has been moved to the [zeam monorepo](https://github.com/blockblaz/zeam). This repository is no longer maintained.**
+
 This package is the runtime libraries required for zeam to run in zkVMs.
 
 Only powdr is having full support so far, with other zkVM in progress.
